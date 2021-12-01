@@ -11,7 +11,7 @@ function App() {
 
   //Funcion para guardar los datos del formulario desde el frontend al backend
   const addFriend = () => {
-    Axios.post("http://localhost:49000/addFriend", { 
+    Axios.post("https://mern-pogit.herokuapp.com/addFriend", { 
       name : name, 
       age : age,
       description : description 
@@ -29,7 +29,7 @@ function App() {
     const newAge = prompt("Ingresar nueva edad: ");
     const newDescription = prompt("Ingresar nueva descripcion: ");
 
-    Axios.put("http://localhost:49000/update", { newAge: newAge, newDescription: newDescription, id: id}).then(() =>{
+    Axios.put("https://mern-pogit.herokuapp.com/update", { newAge: newAge, newDescription: newDescription, id: id}).then(() =>{
       alert('Datos actualizados! Success! =D');
       setListOfFriends(ListOfFriends.map((val) =>{
         return val._id === id 
@@ -43,7 +43,7 @@ function App() {
 
   //Funcion para borrar datos desde el frontend al backend
   const deleteFriend = (id) => {
-    Axios.delete(`http://localhost:49000/delete/${id}`).then(() => {
+    Axios.delete(`https://mern-pogit.herokuapp.com/delete/${id}`).then(() => {
       alert('Datos eliminados! Sucess! =D');
       setListOfFriends(ListOfFriends.filter((val) => {
         return val._id !== id;
@@ -58,7 +58,7 @@ function App() {
   //Funcion para cargar los datos desde el backend al frontend
   //useEffect es una funcion que se ejecuta al cargar la App
   useEffect(() => {
-    Axios.get("http://localhost:49000/read")
+    Axios.get("https://mern-pogit.herokuapp.com/read")
     .then((response) => {
       setListOfFriends(response.data);
     }).catch(() => {
